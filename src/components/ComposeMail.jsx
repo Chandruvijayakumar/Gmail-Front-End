@@ -12,12 +12,12 @@ import React, { useState } from "react";
 import useApi from "../hooks/useApi";
 import { API_URLS } from "../services/api.urls.js";
 const dialogStyle = {
-  height: "90%",
-  width: "80%",
+  height: "100%",
+  width: "50%",
   maxWidth: "100%",
   maxHeight: "100%",
   boxShadow: "none",
-  borderRadius: "10px 10px 0px 0px ",
+  borderRadius: "10px 10px 10px 10px ",
 };
 
 const Header = styled(Box)`
@@ -55,7 +55,7 @@ const SendButton = styled(Button)`
   font-weight: 500;
   text-transform: none;
   border-radius: 18px;
-  width: 100px;
+  width: 100;
 `;
 
 const ComposeMail = ({ openDialog, setOpenDialog }) => {

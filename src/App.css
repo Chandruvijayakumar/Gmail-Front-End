@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -34,5 +35,172 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Wrapper for each email list item */
+.email-wrapper {
+  padding: 10px 0 0 10px !important; /* Add proper spacing */
+  background: #f2f6fc !important; /* Light background */
+  cursor: pointer !important; /* Pointer for clickable effect */
+  display: flex !important;
+  align-items: center !important; /* Vertically align checkbox and email details */
+  border-bottom: 1px solid #e0e0e0 !important; /* Add bottom border to separate emails */
+}
+
+.email-wrapper > .email-content {
+  display: flex !important;
+  width: 100% !important;
+  align-items: center !important;
+  flex-wrap: wrap !important; /* Allow wrapping on smaller screens */
+}
+
+.email-wrapper > .email-content p {
+  font-size: 14px !important;
+  color: #222 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important; /* Truncate long text */
+  white-space: nowrap !important; /* Prevent text from wrapping */
+}
+
+/* Star and checkbox spacing */
+.email-wrapper .email-star, 
+.email-wrapper .email-checkbox {
+  margin-right: 10px !important;
+}
+
+/* Email subject and body */
+.email-subject {
+  width: 300px !important;
+  color: #000 !important;
+  font-weight: 500 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important; /* Truncate long text */
+  white-space: nowrap !important;
+}
+
+/* Email Indicator label (e.g., Inbox) */
+.email-indicator {
+  font-size: 12px !important;
+  background: #ddd !important;
+  color: #222 !important;
+  border-radius: 4px !important;
+  margin-right: 6px !important;
+  padding: 0 4px !important;
+  text-transform: uppercase !important;
+}
+
+/* Date formatting */
+.email-date {
+  margin-left: auto !important;
+  margin-right: 20px !important;
+  font-size: 12px !important;
+  color: #5f6368 !important;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  /* Adjust layout for smaller screens */
+  .email-wrapper {
+    flex-direction: column !important;
+    padding: 10px 5px !important;
+  }
+
+  .email-wrapper > .email-content {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .email-subject {
+    width: 100% !important; /* Full width on small screens */
+  }
+
+  .email-indicator, .email-date {
+    margin: 5px 0 !important;
+  }
+
+  .email-date {
+    margin-right: 0 !important; /* No right margin on small screens */
+  }
+}
+
+@media (max-width: 1024px) {
+  .email-subject {
+    width: 200px !important; /* Slightly smaller subject width for tablets */
+  }
+}
+/* Compose button styling */
+.compose-button {
+  background: #c2e7ff !important;
+  color: #001d35 !important;
+  padding: 15px !important;
+  border-radius: 16px !important;
+  min-width: 114px !important;
+  text-transform: none !important;
+  margin-bottom: 15px !important; /* Space between button and list */
+  font-weight: 500 !important; /* Stronger font for better visibility */
+}
+
+/* Sidebar container styling */
+.sidebar-container {
+  padding: 8px !important;
+}
+
+/* Sidebar list */
+.sidebar-list {
+  padding: 10px 0 0 5px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+}
+
+/* Sidebar list links */
+.sidebar-list a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+/* Sidebar list icons */
+.sidebar-list a li svg {
+  margin-right: 20px !important;
+}
+
+/* Active link styling */
+.sidebar-active {
+  background-color: #d3e3fd !important;
+  border-radius: 0 16px 16px 0 !important;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  /* Adjust compose button for smaller screens */
+  .compose-button {
+    padding: 10px !important;
+    min-width: 100px !important;
+    font-size: 12px !important; /* Smaller font for mobile */
+  }
+
+  /* Adjust sidebar list items for mobile */
+  .sidebar-list {
+    padding: 5px 0 0 5px !important;
+    font-size: 12px !important;
+  }
+
+  /* Adjust list item spacing on smaller screens */
+  .sidebar-list a li svg {
+    margin-right: 10px !important;
+  }
+}
+body, .main-content {
+  margin-top: 64px; /* Adjust based on the AppBar height */
+}
+/* Ensure the content below the header starts correctly */
+.main-content {
+  margin-top: 64px; /* Height of the header */
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-top: 56px; /* Slightly smaller header height on mobile */
   }
 }

@@ -1,54 +1,28 @@
-import { Box, Typography, Checkbox, styled } from "@mui/material";
-import { Star, StarBorder } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-import { routes } from "../routes/routes";
+import { ListItem, Checkbox, Typography, Box } from "@mui/material";
+import { StarBorder, Star } from "@mui/icons-material";
 import useApi from "../hooks/useApi";
 import { API_URLS } from "../services/api.urls";
-const Wrapper = styled(Box)({
-  padding: "0 0 0 10px",
-  background: "#f2f6fc",
-  display: "flex",
-  alignItems: "center",
-  cursor: "pointer",
-  "&>div": {
-    display: "flex",
-    width: "100%",
-    "&>p": {
-      fontSize: 14,
-    },
-  },
-});
+import { useNavigate } from "react-router-dom";
+import { routes } from "../routes/routes";
+import "../App.css";
 
-const Indicator = styled(Typography)({
-  fontSize: "12px !important",
-  background: "#ddd",
-  color: "#222",
-  padding: "0 4px",
-  borderRadius: 4,
-  marginRight: 6,
-});
-const Date = styled(Typography)({
-  marginLeft: "auto",
-  marginRight: 20,
-  fontSize: 12,
-  color: "#5F6368",
-});
+
 const Email = ({
   email,
+  setStarredEmail,
   selectedEmails,
-  setRefreshScreen,
   setSelectedEmails,
 }) => {
+  const toggleStarredEmailService = useApi(API_URLS.toggleStarredMails);
+
   const navigate = useNavigate();
 
-  const toggleStarredService = useApi(API_URLS.toggleStarredEmail);
-
-  const toggleStarredMails = () => {
-    toggleStarredService.call({ id: email._id, value: !email.starred });
-    setRefreshScreen((prevState) => !prevState);
+  const toggleStarredEmail = () => {
+    toggleStarredEmailService.call({ id: email._id, value: !email.starred });
+    setStarredEmail((prevState) => !prevState);
   };
 
-  const onValueChange = () => {
+  const handleChange = () => {
     if (selectedEmails.includes(email._id)) {
       setSelectedEmails((prevState) =>
         prevState.filter((id) => id !== email._id)
@@ -57,45 +31,48 @@ const Email = ({
       setSelectedEmails((prevState) => [...prevState, email._id]);
     }
   };
+
   return (
-    <Wrapper>
+    <ListItem className="email-wrapper">
       <Checkbox
+        className="email-checkbox"
         size="small"
         checked={selectedEmails.includes(email._id)}
-        onChange={() => onValueChange()}
+        onChange={() => handleChange()}
       />
       {email.starred ? (
         <Star
+          className="email-star"
           fontSize="small"
-          style={{ marginRight: 10, color: "#FFF200" }}
-          onClick={() => toggleStarredMails()}
+          onClick={() => toggleStarredEmail()}
         />
       ) : (
         <StarBorder
+          className="email-star"
           fontSize="small"
-          style={{ marginRight: 10 }}
-          onClick={() => toggleStarredMails()}
+          onClick={() => toggleStarredEmail()}
         />
       )}
-
       <Box
+        className="email-content"
         onClick={() => navigate(routes.view.path, { state: { email: email } })}
       >
-        <Typography style={{ width: 200, overflow: "hidden" }}>
-          {email.name}
+        <Typography className="email-subject">
+          To: {email.to.split("@")[0]}
         </Typography>
-        <Indicator>Inbox</Indicator>
+        <Typography className="email-indicator">Inbox</Typography>
         <Typography>
           {email.subject} {email.body && "-"} {email.body}
         </Typography>
-        <Date>
-          {new window.Date(email.date).getDate()}
+        <Typography className="email-date">
+          {new window.Date(email.date).getDate()}&nbsp;
           {new window.Date(email.date).toLocaleString("default", {
             month: "long",
           })}
-        </Date>
+        </Typography>
       </Box>
-    </Wrapper>
+    </ListItem>
   );
 };
+
 export default Email;
