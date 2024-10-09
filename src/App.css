@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -37,6 +38,97 @@
   }
 }
 
+/* Wrapper for each email list item */
+.email-wrapper {
+  padding: 10px 0 0 10px !important; /* Add proper spacing */
+  background: #f2f6fc !important; /* Light background */
+  cursor: pointer !important; /* Pointer for clickable effect */
+  display: flex !important;
+  align-items: center !important; /* Vertically align checkbox and email details */
+  border-bottom: 1px solid #e0e0e0 !important; /* Add bottom border to separate emails */
+}
+
+.email-wrapper > .email-content {
+  display: flex !important;
+  width: 100% !important;
+  align-items: center !important;
+  flex-wrap: wrap !important; /* Allow wrapping on smaller screens */
+}
+
+.email-wrapper > .email-content p {
+  font-size: 14px !important;
+  color: #222 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important; /* Truncate long text */
+  white-space: nowrap !important; /* Prevent text from wrapping */
+}
+
+/* Star and checkbox spacing */
+.email-wrapper .email-star, 
+.email-wrapper .email-checkbox {
+  margin-right: 10px !important;
+}
+
+/* Email subject and body */
+.email-subject {
+  width: 300px !important;
+  color: #000 !important;
+  font-weight: 500 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important; /* Truncate long text */
+  white-space: nowrap !important;
+}
+
+/* Email Indicator label (e.g., Inbox) */
+.email-indicator {
+  font-size: 12px !important;
+  background: #ddd !important;
+  color: #222 !important;
+  border-radius: 4px !important;
+  margin-right: 6px !important;
+  padding: 0 4px !important;
+  text-transform: uppercase !important;
+}
+
+/* Date formatting */
+.email-date {
+  margin-left: auto !important;
+  margin-right: 20px !important;
+  font-size: 12px !important;
+  color: #5f6368 !important;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  /* Adjust layout for smaller screens */
+  .email-wrapper {
+    flex-direction: column !important;
+    padding: 10px 5px !important;
+  }
+
+  .email-wrapper > .email-content {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .email-subject {
+    width: 100% !important; /* Full width on small screens */
+  }
+
+  .email-indicator, .email-date {
+    margin: 5px 0 !important;
+  }
+
+  .email-date {
+    margin-right: 0 !important; /* No right margin on small screens */
+  }
+}
+
+@media (max-width: 1024px) {
+  .email-subject {
+    width: 200px !important; /* Slightly smaller subject width for tablets */
+  }
+}
 /* Compose button styling */
 .compose-button {
   background: #c2e7ff !important;
@@ -99,8 +191,7 @@
     margin-right: 10px !important;
   }
 }
-body,
-.main-content {
+body, .main-content {
   margin-top: 64px; /* Adjust based on the AppBar height */
 }
 /* Ensure the content below the header starts correctly */
@@ -111,92 +202,5 @@ body,
 @media (max-width: 768px) {
   .main-content {
     margin-top: 56px; /* Slightly smaller header height on mobile */
-  }
-}
-
-/* Email Wrapper */
-.email-wrapper {
-  display: flex;
-  align-items: center;
-  padding: 10px 10px;
-  border-bottom: 1px solid #e0e0e0;
-  background-color: #f9f9f9;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.email-wrapper:hover {
-  background-color: #f0f0f0; /* Hover effect */
-}
-
-/* Email Checkbox */
-.email-checkbox {
-  margin-right: 0px;
-}
-
-/* Starred Email Icon */
-.email-star {
-  margin-right: 10px;
-  color: #ffac33;
-  cursor: pointer;
-}
-
-/* Email Content Box */
-.email-content {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  overflow: hidden;
-}
-
-.email-content:hover {
-  color: #007bff;
-}
-
-/* Email Subject */
-.email-subject {
-  font-weight: bold;
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-/* Email Indicator */
-.email-indicator {
-  background-color: #e0e7ff;
-  color: #333;
-  font-size: 12px;
-  padding: 3px 6px;
-  border-radius: 4px;
-  margin-right: 10px;
-  display: inline-block;
-  margin-bottom: 5px;
-}
-
-/* Email Date */
-.email-date {
-  font-size: 12px;
-  color: #555;
-  margin-left: auto;
-  margin-right: 10px;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-  .email-wrapper {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .email-star {
-    margin-bottom: 5px;
-  }
-
-  .email-content {
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .email-date {
-    margin-right: 0;
   }
 }
